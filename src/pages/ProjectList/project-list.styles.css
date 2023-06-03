@@ -1,0 +1,24 @@
+.project-list-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .project-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .project-item {
+    margin-bottom: 20px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 4px;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .project-list-container {
+      padding: 10px;
+    }
+  }
+  

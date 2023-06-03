@@ -1,64 +1,17 @@
 import { FC } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "./components/LoginPage/LoginPage";
-import Test from "./components/Test";
-import ProtectedRoutes, { ProtectedRouteProps } from "./routes/ProtectedRoute";
-import PublicRoutes from "./routes/PublicRoute";
+import { BrowserRouter as Router } from "react-router-dom";
+import { SessionContextProvider } from "./context/SessionContext";
+import Sidebar from "./components/Sidebar/Sidebar";
+import RouterComponent from "./routes";
 import "./App.css";
 
-import {
-  SessionContextProvider,
-  useSessionContext,
-} from "./context/SessionContext";
-import Home from "./pages/Home/Home";
-import Registration from "./components/Registration";
-
 const App: FC = () => {
-  const [sessionContext, updateSessionContext] = useSessionContext();
-
-  const setRedirectPath = (path: string) => {
-    updateSessionContext({ ...sessionContext, redirectPath: path });
-  };
-
-  if (!sessionContext.redirectPath) {
-    setRedirectPath("dashboard");
-  }
-
-  const defaultProtectedRouteProps: Omit<ProtectedRouteProps, "outlet"> = {
-    isAuthenticated: !!sessionContext.isAuthenticated,
-    authenticationPath: "/login",
-    redirectPath: sessionContext.redirectPath,
-    setRedirectPath: setRedirectPath,
-  };
-
   return (
-    <div className="App">
+    <div className="app-container">
       <Router>
         <SessionContextProvider>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <ProtectedRoutes
-                  {...defaultProtectedRouteProps}
-                  outlet={<LoginPage />}
-                />
-              }
-            />
-            <Route
-              path="app"
-              element={
-                <ProtectedRoutes
-                  {...defaultProtectedRouteProps}
-                  outlet={<Home />}
-                />
-              }
-            />
-            <Route path="/" element={<PublicRoutes />}>
-              <Route path="login" element={<LoginPage />}></Route>
-              <Route path="registration" element={<Registration />}></Route>
-            </Route>
-          </Routes>
+          <Sidebar />
+          <RouterComponent />
         </SessionContextProvider>
       </Router>
     </div>

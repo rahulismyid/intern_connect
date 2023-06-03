@@ -36,11 +36,11 @@ const ProtectedRoutes = ({
   authenticationPath,
   outlet,
 }: ProtectedRouteProps) => {
-  if (isAuthenticated) {
-    return outlet;
-  } else {
-    return <Navigate to={{ pathname: authenticationPath }} />;
-  }
+  return <div className="dashboard">{outlet}</div>;
+  // if (isAuthenticated) {
+  // } else {
+  //   return <Navigate to={{ pathname: authenticationPath }} />;
+  // }
 };
 
 export default ProtectedRoutes;
