@@ -34,7 +34,9 @@ const Sidebar: React.FC = () => {
         <li>
           <Link to={"/message"}>Chat</Link>
         </li>
-        <li>Products</li>
+        <li>
+          <Link to={"/discussion"}>Discussion Forum</Link>
+        </li>
         <li>Settings</li>
       </ul>
     </div>

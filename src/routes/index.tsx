@@ -9,6 +9,7 @@ import ProjectList from "../pages/ProjectList";
 import ChatPage from "../pages/ChatPage";
 import PublicRoutes from "./PublicRoute";
 import Registration from "../components/Registration";
+import DiscussionForum from "../pages/DiscussionForum";
 
 const RouterComponent = () => {
   const [sessionContext, updateSessionContext] = useSessionContext();
@@ -77,6 +78,15 @@ const RouterComponent = () => {
           <ProtectedRoutes
             {...defaultProtectedRouteProps}
             outlet={<ChatPage />}
+          />
+        }
+      />
+      <Route
+        path="discussion"
+        element={
+          <ProtectedRoutes
+            {...defaultProtectedRouteProps}
+            outlet={<DiscussionForum />}
           />
         }
       />
