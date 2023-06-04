@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "./login-page.styles.css";
+import {
+  LoginContainerDiv,
+  LoginFormH2,
+  LoginFormGroupDiv,
+  LoginButtonGroupDiv,
+  LoginFormDiv,
+} from "./login-page.styles";
 
 interface LoginFormProps {
   onLogin?: (email: string, password: string) => void;
@@ -35,10 +41,10 @@ const LoginPage: React.FC<LoginFormProps> = ({ onLogin }) => {
   };
   return (
     <>
-      <div className="login-container">
-        <form className="login-form" onSubmit={handleSubmit}>
-          <h2>Login</h2>
-          <div className="form-group">
+      <LoginContainerDiv>
+        <LoginFormDiv onSubmit={handleSubmit}>
+          <LoginFormH2>Login</LoginFormH2>
+          <LoginFormGroupDiv>
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -47,8 +53,8 @@ const LoginPage: React.FC<LoginFormProps> = ({ onLogin }) => {
               onChange={handleEmailChange}
               required
             />
-          </div>
-          <div className="form-group">
+          </LoginFormGroupDiv>
+          <LoginFormGroupDiv>
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -60,13 +66,13 @@ const LoginPage: React.FC<LoginFormProps> = ({ onLogin }) => {
             {email && !isValidEmail && (
               <p>Please enter a valid email address.</p>
             )}
-          </div>
-          <div className="login-btn-group">
+          </LoginFormGroupDiv>
+          <LoginButtonGroupDiv>
             <button type="submit">Login</button>
             <button onClick={() => navigate("/registration")}>Sign up</button>
-          </div>
-        </form>
-      </div>
+          </LoginButtonGroupDiv>
+        </LoginFormDiv>
+      </LoginContainerDiv>
     </>
   );
 };

@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import "./feeds.styles.css";
+import {
+  AuthorAvatarDiv,
+  CommentInput,
+  CommentsDiv,
+  CommentsInputDiv,
+  FeedsDiv,
+  LikeButton,
+  PostDiv,
+  PostFooterDiv,
+  PostHeaderDiv,
+} from "./feeds.styles";
 
 interface Post {
   id: number;
@@ -104,37 +114,36 @@ const Feeds: React.FC = () => {
   };
 
   return (
-    <div className="feeds">
+    <FeedsDiv>
       {posts.map((post) => (
-        <div className="post" key={post.id}>
-          <div className="post-header">
-            <img
-              className="author-avatar"
+        <PostDiv key={post.id}>
+          <PostHeaderDiv>
+            <AuthorAvatarDiv
               src={`https://placekitten.com/40/40?random=${post.id}`}
               alt={post.author}
             />
             <h3>{post.author}</h3>
-          </div>
+          </PostHeaderDiv>
           <p>{post.content}</p>
-          <div className="post-footer">
-            <button className="like-btn" onClick={() => handleLike(post.id)}>
+          <PostFooterDiv>
+            <LikeButton onClick={() => handleLike(post.id)}>
               Like ({post.likes})
-            </button>
-            <div className="comments">
+            </LikeButton>
+            <CommentsDiv>
               {post.comments.map((comment, index) => (
                 <p key={index}>{comment}</p>
               ))}
-            </div>
-            <div className="comment-input">
-              <input type="text" placeholder="Add a comment..." />
+            </CommentsDiv>
+            <CommentsInputDiv>
+              <CommentInput type="text" placeholder="Add a comment..." />
               <button onClick={() => handleComment(post.id, "New comment")}>
                 Comment
               </button>
-            </div>
-          </div>
-        </div>
+            </CommentsInputDiv>
+          </PostFooterDiv>
+        </PostDiv>
       ))}
-    </div>
+    </FeedsDiv>
   );
 };
 

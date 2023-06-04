@@ -1,6 +1,16 @@
 import React, { useState } from "react";
-import "./registration.styles.css";
 import { Link } from "react-router-dom";
+import {
+  RegistrationContainerDiv,
+  RegistrationHeaderDiv,
+  RegistrationForm,
+  RegistrationFormGroupDiv,
+  RegistrationFormLabel,
+  RegistrationFormInput,
+  RegistrationPasswordInputDiv,
+  RegistrationPasswordInput,
+  RegistrationPasswordToggle,
+} from "./registration.styles";
 
 interface RegistrationFormData {
   name: string;
@@ -54,33 +64,33 @@ const Registration: React.FC = () => {
   };
 
   return (
-    <div className="registration-container">
-      <div className="registration-container-header">
+    <RegistrationContainerDiv>
+      <RegistrationHeaderDiv>
         <h2>Registration</h2>
         <Link to="/login">Back</Link>
-      </div>
-      <form className="registration-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Name:</label>
-          <input
+      </RegistrationHeaderDiv>
+      <RegistrationForm onSubmit={handleSubmit}>
+        <RegistrationFormGroupDiv>
+          <RegistrationFormLabel htmlFor="name">Name:</RegistrationFormLabel>
+          <RegistrationFormInput
             type="text"
             id="name"
             name="name"
             value={formData.name}
             onChange={handleInputChange}
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email:</label>
-          <input
+        </RegistrationFormGroupDiv>
+        <RegistrationFormGroupDiv>
+          <RegistrationFormLabel htmlFor="email">Email:</RegistrationFormLabel>
+          <RegistrationFormInput
             type="email"
             id="email"
             name="email"
             value={formData.email}
             onChange={handleInputChange}
           />
-        </div>
-        <div className="form-group">
+        </RegistrationFormGroupDiv>
+        <RegistrationFormGroupDiv>
           <label htmlFor="phone">Phone:</label>
           <input
             type="text"
@@ -89,48 +99,52 @@ const Registration: React.FC = () => {
             value={formData.phone}
             onChange={handleInputChange}
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <div className="password-input">
-            <input
+        </RegistrationFormGroupDiv>
+        <RegistrationFormGroupDiv>
+          <RegistrationFormLabel htmlFor="password">
+            Password:
+          </RegistrationFormLabel>
+          <RegistrationPasswordInputDiv>
+            <RegistrationPasswordInput
               type={showPassword ? "text" : "password"}
               id="password"
               name="password"
               value={formData.password}
               onChange={handleInputChange}
             />
-            <i
+            <RegistrationPasswordToggle
               className={`password-toggle ${showPassword ? "visible" : ""}`}
               onClick={togglePasswordVisibility}
             >
               {showPassword ? "Hide" : "Show"}
-            </i>
-          </div>
-        </div>
-        <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm Password:</label>
-          <div className="password-input">
-            <input
+            </RegistrationPasswordToggle>
+          </RegistrationPasswordInputDiv>
+        </RegistrationFormGroupDiv>
+        <RegistrationFormGroupDiv>
+          <RegistrationFormLabel htmlFor="confirmPassword">
+            Confirm Password:
+          </RegistrationFormLabel>
+          <RegistrationPasswordInputDiv>
+            <RegistrationPasswordInput
               type={showConfirmPassword ? "text" : "password"}
               id="confirmPassword"
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleInputChange}
             />
-            <i
+            <RegistrationPasswordToggle
               className={`password-toggle ${
                 showConfirmPassword ? "visible" : ""
               }`}
               onClick={toggleConfirmPasswordVisibility}
             >
               {showConfirmPassword ? "Hide" : "Show"}
-            </i>
-          </div>
-        </div>
+            </RegistrationPasswordToggle>
+          </RegistrationPasswordInputDiv>
+        </RegistrationFormGroupDiv>
         <button type="submit">Register</button>
-      </form>
-    </div>
+      </RegistrationForm>
+    </RegistrationContainerDiv>
   );
 };
 

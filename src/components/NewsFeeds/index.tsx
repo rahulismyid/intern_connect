@@ -1,5 +1,5 @@
 import React from "react";
-import "./news-feeds.styles.css";
+import { NewsArticleDiv, NewsFeedsDiv } from "./news-feeds.styles.";
 
 interface NewsArticle {
   id: number;
@@ -28,15 +28,15 @@ const newsArticles: NewsArticle[] = [
 
 const NewsFeeds: React.FC = () => {
   return (
-    <div className="news-feeds">
+    <NewsFeedsDiv>
       <h2>News Feeds</h2>
       {newsArticles.map((article) => (
-        <div className="news-article" key={article.id}>
+        <NewsArticleDiv key={article.id}>
           <h3>{article.title}</h3>
           <p>{article.description}</p>
-        </div>
+        </NewsArticleDiv>
       ))}
-    </div>
+    </NewsFeedsDiv>
   );
 };
 

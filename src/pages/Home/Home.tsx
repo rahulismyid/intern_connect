@@ -17,10 +17,8 @@ const Home: React.FC = () => {
         </div>
         <h1>Welcome Home!</h1>
         <div className="container">
-          <div className="content">
-            <Feeds />
-            <NewsFeeds />
-          </div>
+          <Feeds />
+          <NewsFeeds />
         </div>
       </div>
     </div>
